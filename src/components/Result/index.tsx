@@ -37,21 +37,40 @@ export function Result({
       navigator.clipboard.writeText(scoreToEmoji(guesses));
     }, [guesses]);
 
-    const triesConjugation = currentTry === 1 ? "próbie" : "próbach";
+    const triesConjugation = currentTry === 1 ? "try" : "tries";
 
-    return <></>;
+    return (
+      <>
+        <Styled.ResultTitle>{textForTry[currentTry - 1]}</Styled.ResultTitle>
+        <Styled.SongTitle>
+          Today&apos;s song is {todaysSolution.artist} - {todaysSolution.name}
+        </Styled.SongTitle>
+        <Styled.Tries>
+          You guessed in {currentTry} {triesConjugation}
+        </Styled.Tries>
+        <YouTube id={todaysSolution.youtubeId} />
+        <Button onClick={copyResult} variant="green">
+          Copy the result
+        </Button>
+        <Styled.TimeToNext>
+          Remember to come back tomorrow - the next Heardle is in:
+          {hoursToNextDay} hours!
+        </Styled.TimeToNext>
+      </>
+    );
   } else {
     return (
       <>
-        <Styled.ResultTitle>Niestety, nie udało się...</Styled.ResultTitle>
+        <Styled.ResultTitle>
+          Unfortunately, it was not possible ...
+        </Styled.ResultTitle>
         <Styled.SongTitle>
-          Dzisiejsza piosenka, to {todaysSolution.artist} -{" "}
-          {todaysSolution.name}
+          Today&pos;s song is
+          {todaysSolution.artist} - {todaysSolution.name}
         </Styled.SongTitle>
         <YouTube id={todaysSolution.youtubeId} />
         <Styled.TimeToNext>
-          Spróbuj ponownie jutro - następny Słuchaj.fun za: {hoursToNextDay}{" "}
-          godzin!
+          Try again tomorrow - next Heardle is in: {hoursToNextDay} hours!
         </Styled.TimeToNext>
       </>
     );

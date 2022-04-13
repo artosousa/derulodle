@@ -6,7 +6,9 @@ import * as Styled from "./index.styled";
 export function Footer() {
   return (
     <footer>
-      <Styled.Text></Styled.Text>
+      <Styled.Text>
+        Made with <IoHeart />
+      </Styled.Text>
     </footer>
   );
 }
